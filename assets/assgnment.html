@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 p-6">
+    <div class="max-w-6xl mx-auto bg-white shadow-md rounded-md p-4">
+      <!-- Navbar -->
+      <nav class="flex justify-between items-center p-4 border-b">
+        <h1 class="text-xl font-bold">
+          📌 Dev<span class="text-blue-500">Board</span>
+        </h1>
+        <div class="flex items-center space-x-4">
+          <span
+            class="flex items-center space-x-1 bg-blue-100 px-3 py-1 rounded-md"
+          >
+            ✅ <span id="task-done" class="font-bold text-lg">23</span>
+          </span>
+          <button id="color-btn" class="w-8 h-8 rounded-full border"></button>
+        </div>
+      </nav>
+
+      <!-- Header -->
+      <div class="grid grid-cols-3 gap-4 mt-6">
+        <div class="p-4 bg-gray-200 rounded-md">
+          <p class="text-gray-600">Task Assigned</p>
+          <h2 class="text-3xl font-bold"><span id="task-count">6</span></h2>
+        </div>
+        <div
+          class="p-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-md text-white text-center"
+        >
+          <p class="font-bold text-lg">Discover Something New Today!</p>
+        </div>
+        <div class="p-4 bg-gray-200 rounded-md text-center">
+          <p class="text-gray-600">📅 <span id="current-date"></span></p>
+        </div>
+      </div>
+
+      <!-- Task Cards -->
+      <div class="grid grid-cols-3 gap-4 mt-6">
+        <div class="bg-white shadow-md p-4 rounded-md border">
+          <p
+            class="text-sm font-semibold bg-gray-200 px-2 py-1 inline-block rounded-md"
+          >
+            Shop Ease
+          </p>
+          <h3 class="font-bold mt-2">Fix Mobile Button Issue</h3>
+          <p class="text-gray-500 text-sm">Deadline: 21 March 2025</p>
+          <button
+            class="complete-btn mt-3 bg-purple-600 text-white px-4 py-2 rounded-md"
+          >
+            Completed
+          </button>
+        </div>
+
+        <div class="bg-white shadow-md p-4 rounded-md border">
+          <p
+            class="text-sm font-semibold bg-gray-200 px-2 py-1 inline-block rounded-md"
+          >
+            Soft Pay
+          </p>
+          <h3 class="font-bold mt-2">Add Pay Success Modal</h3>
+          <p class="text-gray-500 text-sm">Deadline: 25 March 2025</p>
+          <button
+            class="complete-btn mt-3 bg-purple-600 text-white px-4 py-2 rounded-md"
+          >
+            Completed
+          </button>
+        </div>
+
+        <div class="bg-white shadow-md p-4 rounded-md border">
+          <p
+            class="text-sm font-semibold bg-gray-200 px-2 py-1 inline-block rounded-md"
+          >
+            Meta
+          </p>
+          <h3 class="font-bold mt-2">Add new reaction 👏</h3>
+          <p class="text-gray-500 text-sm">Deadline: 31 March 2025</p>
+          <button
+            class="complete-btn mt-3 bg-purple-600 text-white px-4 py-2 rounded-md"
+          >
+            Completed
+          </button>
+        </div>
+
+        <div class="bg-white shadow-md p-4 rounded-md border">
+          <p
+            class="text-sm font-semibold bg-gray-200 px-2 py-1 inline-block rounded-md"
+          >
+            Programming Hero
+          </p>
+          <h3 class="font-bold mt-2">Fix Video Loading Issue</h3>
+          <p class="text-gray-500 text-sm">Deadline: 21 March 2025</p>
+          <button
+            class="complete-btn mt-3 bg-purple-600 text-white px-4 py-2 rounded-md"
+          >
+            Completed
+          </button>
+        </div>
+
+        <div class="bg-white shadow-md p-4 rounded-md border">
+          <p
+            class="text-sm font-semibold bg-gray-200 px-2 py-1 inline-block rounded-md"
+          >
+            Google LLC
+          </p>
+          <h3 class="font-bold mt-2">Integrate AI Search</h3>
+          <p class="text-gray-500 text-sm">Deadline: 01 April 2025</p>
+          <button
+            class="complete-btn mt-3 bg-purple-600 text-white px-4 py-2 rounded-md"
+          >
+            Completed
+          </button>
+        </div>
+
+        <div class="bg-white shadow-md p-4 rounded-md border">
+          <p
+            class="text-sm font-semibold bg-gray-200 px-2 py-1 inline-block rounded-md"
+          >
+            Polygon Tech
+          </p>
+          <h3 class="font-bold mt-2">Review Ami Probashi Site</h3>
+          <p class="text-gray-500 text-sm">Deadline: 05 May 2025</p>
+          <button
+            class="complete-btn mt-3 bg-purple-600 text-white px-4 py-2 rounded-md"
+          >
+            Completed
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Functionality for "Completed" Buttons
+      let taskCount = document.getElementById("task-count");
+      let taskDone = document.getElementById("task-done");
+      let completeButtons = document.querySelectorAll(".complete-btn");
+
+      completeButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+          let count = parseInt(taskCount.innerText);
+          let done = parseInt(taskDone.innerText);
+
+          if (count > 0) {
+            taskCount.innerText = count - 1;
+            taskDone.innerText = done + 1;
+            button.disabled = true;
+            button.classList.add("opacity-50", "cursor-not-allowed");
+          }
+        });
+      });
+
+      // Functionality for Current Date
+      function setCurrentDate() {
+        let dateElement = document.getElementById("current-date");
+        let today = new Date();
+        let options = {
+          weekday: "short",
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        };
+        dateElement.innerText = today.toLocaleDateString("en-US", options);
+      }
+      setCurrentDate();
+
+      // Functionality for Changing Navbar Button Background Color
+      let colorBtn = document.getElementById("color-btn");
+      let colors = [
+        "bg-red-500",
+        "bg-green-500",
+        "bg-blue-500",
+        "bg-yellow-500",
+        "bg-purple-500",
+      ];
+      let colorIndex = 0;
+
+      colorBtn.addEventListener("click", function () {
+        colorBtn.className =
+          "w-8 h-8 rounded-full border " + colors[colorIndex];
+        colorIndex = (colorIndex + 1) % colors.length;
+      });
+    </script>
+  </body>
+</html>
