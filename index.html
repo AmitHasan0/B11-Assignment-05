@@ -30,12 +30,11 @@
       #hidden-text {
         display: none;
       }
-      .invisible-text {
+      .invisible-text{
         margin: 24px;
         padding: 16px;
         background-color: #F4F7FF;
         border-radius: 16px;
-
       }
     </style>
   </head>
@@ -85,11 +84,11 @@
             <p class="font-bold text-3xl"><span id="task-count">06</span></p>
           </div>
         </div>
-        <div class="bg-gradient-to-l from-[#9BA8F8] to-[#3770FD] rounded-xl flex justify-center items-center gap-4 p-4 pl-12 pr-28">
+        <div id="another-page" class="bg-gradient-to-l from-[#9BA8F8] to-[#3770FD] rounded-xl flex justify-center items-center gap-4 p-4 pl-12 pr-28 cursor-pointer">
             <img src="assets/board.png" alt="">
-            <p class="font-medium text-2xl text-white">Discover Something <br> New Today!</p>
+            <p class="font-medium text-2xl text-white ">Discover Something New Today!</p>
         </div>
-         <div class="flex gap-8  justify-center p-6  items-center bg-blue-50 rounded-xl">
+         <div class="flex gap-8  justify-center p-6 pr-20 items-center bg-blue-50 rounded-xl">
         <div class="bg-[#ffffff] rounded-full p-4">
             <img src="assets/calender.png" alt="">
             </div>
@@ -204,7 +203,7 @@
     <div class="text-center mt-8">
       <div class="flex gap-4 justify-center">
      <div>
-       <img src="activity.png" alt="">
+       <img src="assets/activity.png" alt="">
      </div>
       <h5 class="text-xl font-medium">Activity Log</h5>
     </div>
@@ -212,7 +211,7 @@
     </div>
     <hr class="border-t-2 border-dashed border-blue-200 my-4">
   <div id="text-container">
-      <p id="hidden-text" class="invisible-text">You have completed the task <span id="card-title"></span>issue at <span id="time-today"></span></p>
+      <p id="hidden-text" class="invisible-text"><span id="card-title"></span><span id="time-today"></span></p>
   </div>
   </section>
     </main>
@@ -233,12 +232,14 @@
           alert('Board Updated Successfully')
 
           
-          const hiddenText = document.getElementById('hidden-text').innerText
-          
-          const newText = document.createElement('p')
-          newText.classList.add('invisible-text')
-          newText.innerText = hiddenText
-          textContainer.appendChild(newText)
+          let cardTitle = button.closest("div.space-y-5").querySelector("h2").innerText;
+          let currentTime = new Date().toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+
+            const newText = document.createElement("p");
+            newText.classList.add("invisible-text");
+            newText.innerHTML = `You have completed the task <b>${cardTitle}</b> at ${currentTime}`;
+            textContainer.appendChild(newText);
+
           
 
           let count = parseInt(taskCount.innerText);
@@ -250,10 +251,16 @@
             button.disabled = true;
             button.classList.add("opacity-50", "cursor-not-allowed");
 
-               let allCompleted = [...completeButtons].every(btn => btn.disabled);
-               if(allCompleted){
-                alert('Congrats!!! You have completed all the current task')
+           // Check if all buttons are disabled
+            let allCompleted = true; 
+            completeButtons.forEach((btn) => {
+            if (!btn.disabled) {
+              allCompleted = false; 
                }
+              });
+              if (allCompleted) {
+              alert("Congrats!!! You have completed all the current tasks");
+                }
               }
         });
       });
@@ -275,32 +282,30 @@
             let [weekday, month, day, year] = formattedDate.split(' ');
                 dateElement.innerHTML = `
                   <span class="text-gray-400 block text-2xl">${weekday}</span>
-                  <span class="font-bold text-2xl">${month} ${day}, ${year}</span>
+                  <span class="font-bold text-2xl">${month} ${day} ${year}</span>
                   `;
                  }
                 setCurrentDate();
 
-    // for current time
-                function currentTime(){
-                  const time = new Date()
-                  const timeString= time.toLocaleTimeString("en-US", { hour: '2-digit', minute: '2-digit', second: '2-digit'})
-                  document.getElementById("time-today").innerText=timeString
-                }
-                currentTime()
-                setInterval(currentTime, 1000)
-
-
        // for color btn
                  const btn = document.getElementById("colorButton");
+                 btn.addEventListener("click", function (){
+                  let colors = ['red', 'pink', 'yellow', 'orange', 'lightgreen', 'lime', 'aquamarine', 'violet'] 
+                  let randomColor = colors[Math.floor(Math.random() * colors.length)];
+                 document.body.style.backgroundColor = randomColor;
+                 });
 
-  btn.addEventListener("click", () => {
-    document.body.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 75%)`;
-  });
+     // for clear history
+                 document.getElementById('clear-data').addEventListener('click', function() {
+                 document.getElementById('text-container').innerHTML=''
+  
+                });
 
-  // for clear history
-     document.getElementById('clear-data').addEventListener('click', function() {
-    document.getElementById('text-container').innerText = "";
-});
+                // for another page
+                document.getElementById('another-page').addEventListener('click',function(){
+                  window.location.href='index2.html'
+                })
+
 
 
     </script>
