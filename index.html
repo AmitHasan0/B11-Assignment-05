@@ -119,8 +119,23 @@
  </div>
 </div>
 <div class="space-y-5 bg-blue-50 w-96 p-8 m-8 rounded-2xl">
-     <h5 class="bg-white p-3 w-2/5 text-[#00303C] rounded-lg text-center">ShopEase</h5>
-    <h2 class="font-medium text-2xl">Fix Mobile Button Issue</h2>
+     <h5 class="bg-white p-3 w-2/5 text-[#00303C] rounded-lg text-center">CloudSync</h5>
+    <h2 class="font-medium text-2xl">Add Dark Mode</h2>
+       <p class="bg-white p-6 rounded-lg">Store the user's preference <br> in localStorage, update CSS <br> variables dynamically</p>
+<hr class="border-t-2 border-dashed border-blue-200 my-4">
+
+ <div class="flex justify-between pt-7">
+   <div>
+    <p>Deadline <br>
+<span class="font-medium text-xl">21 March 2025</span></p>
+  </div>
+  <button class="complete-btn rounded-lg bg-[#3752FD] text-white p-3 px-6
+  ">Completed</button>
+ </div>
+</div>
+<div class="space-y-5 bg-blue-50 w-96 p-8 m-8 rounded-2xl">
+     <h5 class="bg-white p-3 w-2/5 text-[#00303C] rounded-lg text-center">SwiftPay</h5>
+    <h2 class="font-medium text-2xl">Optimize  Home page</h2>
        <p class="bg-white p-6 rounded-lg">Debug using DevTools,check <br> for overlapping elements,  and <br> ensure onClick works properly</p>
 <hr class="border-t-2 border-dashed border-blue-200 my-4">
 
@@ -134,8 +149,8 @@
  </div>
 </div>
 <div class="space-y-5 bg-blue-50 w-96 p-8 m-8 rounded-2xl">
-     <h5 class="bg-white p-3 w-2/5 text-[#00303C] rounded-lg text-center">ShopEase</h5>
-    <h2 class="font-medium text-2xl">Fix Mobile Button Issue</h2>
+     <h5 class="bg-white p-3 w-2/5 text-[#00303C] rounded-lg text-center">Meta</h5>
+    <h2 class="font-medium text-2xl">Add new emoji 🤲</h2>
        <p class="bg-white p-6 rounded-lg">Debug using DevTools,check <br> for overlapping elements,  and <br> ensure onClick works properly</p>
 <hr class="border-t-2 border-dashed border-blue-200 my-4">
 
@@ -149,8 +164,8 @@
  </div>
 </div>
 <div class="space-y-5 bg-blue-50 w-96 p-8 m-8 rounded-2xl">
-     <h5 class="bg-white p-3 w-2/5 text-[#00303C] rounded-lg text-center">ShopEase</h5>
-    <h2 class="font-medium text-2xl">Fix Mobile Button Issue</h2>
+     <h5 class="bg-white p-3 w-2/5 text-[#00303C] rounded-lg text-center">Google LLC</h5>
+    <h2 class="font-medium text-2xl">Integrate OpenAI API</h2>
        <p class="bg-white p-6 rounded-lg">Debug using DevTools,check <br> for overlapping elements,  and <br> ensure onClick works properly</p>
 <hr class="border-t-2 border-dashed border-blue-200 my-4">
 
@@ -164,23 +179,8 @@
  </div>
 </div>
 <div class="space-y-5 bg-blue-50 w-96 p-8 m-8 rounded-2xl">
-     <h5 class="bg-white p-3 w-2/5 text-[#00303C] rounded-lg text-center">ShopEase</h5>
-    <h2 class="font-medium text-2xl">Fix Mobile Button Issue</h2>
-       <p class="bg-white p-6 rounded-lg">Debug using DevTools,check <br> for overlapping elements,  and <br> ensure onClick works properly</p>
-<hr class="border-t-2 border-dashed border-blue-200 my-4">
-
- <div class="flex justify-between pt-7">
-   <div>
-    <p>Deadline <br>
-<span class="font-medium text-xl">21 March 2025</span></p>
-  </div>
-  <button class="complete-btn rounded-lg bg-[#3752FD] text-white p-3 px-6
-  ">Completed</button>
- </div>
-</div>
-<div class="space-y-5 bg-blue-50 w-96 p-8 m-8 rounded-2xl">
-     <h5 class="bg-white p-3 w-2/5 text-[#00303C] rounded-lg text-center">ShopEase</h5>
-    <h2 class="font-medium text-2xl">Fix Mobile Button Issue</h2>
+     <h5 class="bg-white p-3 w-2/5 text-[#00303C] rounded-lg text-center">Glassdoar</h5>
+    <h2 class="font-medium text-2xl">Improve Job searching</h2>
        <p class="bg-white p-6 rounded-lg">Debug using DevTools,check <br> for overlapping elements,  and <br> ensure onClick works properly</p>
 <hr class="border-t-2 border-dashed border-blue-200 my-4">
 
@@ -225,6 +225,8 @@
       let taskCount = document.getElementById("task-count");
       let taskDone = document.getElementById("task-done");
       let completeButtons = document.querySelectorAll(".complete-btn");
+      let textContainer = document.getElementById('text-container')
+
 
       completeButtons.forEach((button) => {
         button.addEventListener("click", function () {
@@ -232,7 +234,7 @@
 
           
           const hiddenText = document.getElementById('hidden-text').innerText
-          const textContainer = document.getElementById('text-container')
+          
           const newText = document.createElement('p')
           newText.classList.add('invisible-text')
           newText.innerText = hiddenText
@@ -247,7 +249,12 @@
             taskDone.innerText = done + 1;
             button.disabled = true;
             button.classList.add("opacity-50", "cursor-not-allowed");
-          }
+
+               let allCompleted = [...completeButtons].every(btn => btn.disabled);
+               if(allCompleted){
+                alert('Congrats!!! You have completed all the current task')
+               }
+              }
         });
       });
 
@@ -291,11 +298,10 @@
   });
 
   // for clear history
-      const clearData = document.getElementById('clear-data')
-      .addEventListener('click',function(){
-        const history = document.getElementById('text-container')
-        history.style.display = 'none'
-      })
+     document.getElementById('clear-data').addEventListener('click', function() {
+    document.getElementById('text-container').innerText = "";
+});
+
 
     </script>
   </body>
