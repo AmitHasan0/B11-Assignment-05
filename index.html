@@ -26,6 +26,18 @@
         },
       };
     </script>
+    <style>
+      #hidden-text {
+        display: none;
+      }
+      .invisible-text {
+        margin: 24px;
+        padding: 16px;
+        background-color: #F4F7FF;
+        border-radius: 16px;
+
+      }
+    </style>
   </head>
   <body class="font-poppins bg-blue-50">
     <header class="mb-5 ">
@@ -35,7 +47,7 @@
       >
         <div class="flex justify-center items-center gap-2">
           <div>
-            <img src="logo.png" alt="DevBoard logo" />
+            <img src="assets/logo.png" alt="DevBoard logo" />
           </div>
           <div class="text-4xl flex">
             <h1 class="font-light">Dev</h1>
@@ -47,12 +59,12 @@
             class="flex justify-center items-center gap-4 bg-blue-50 rounded-full p-3"
           >
             <div>
-              <img src="checkbox.png" alt="" />
+              <img src="assets/checkbox.png" alt="" />
             </div>
             <span id="task-done" class="font-bold text-3xl">23</span>
           </div>
           <button id="colorButton" class="bg-blue-50 rounded-full p-3">
-            <img src="theme-btn.png" alt="" />
+            <img src="assets/theme-btn.png" alt="" />
           </button>
         </div>
     </nav>
@@ -66,7 +78,7 @@
        <div class="flex p-6 gap-6">
                <div class="flex gap-8  justify-center p-6  items-center bg-blue-50 rounded-xl">
                 <div class="bg-[#ffffff] rounded-full p-4">
-            <img src="checkbox.png" alt="">
+            <img src="assets/checkbox.png" alt="">
             </div>
           <div>
               <p class="font-medium text-sm text-gray-500">Task Assigned</p>
@@ -74,12 +86,12 @@
           </div>
         </div>
         <div class="bg-gradient-to-l from-[#9BA8F8] to-[#3770FD] rounded-xl flex justify-center items-center gap-4 p-4 pl-12 pr-28">
-            <img src="board.png" alt="">
+            <img src="assets/board.png" alt="">
             <p class="font-medium text-2xl text-white">Discover Something <br> New Today!</p>
         </div>
          <div class="flex gap-8  justify-center p-6  items-center bg-blue-50 rounded-xl">
         <div class="bg-[#ffffff] rounded-full p-4">
-            <img src="calender.png" alt="">
+            <img src="assets/calender.png" alt="">
             </div>
 <p id="current-date"></p>
 
@@ -188,7 +200,7 @@
 
      
   <!-- activity history section -->
-  <section class="ml-6 bg-white rounded-2xl">
+  <section class="ml-6 w-[21.5%] bg-white rounded-2xl">
     <div class="text-center mt-8">
       <div class="flex gap-4 justify-center">
      <div>
@@ -196,10 +208,12 @@
      </div>
       <h5 class="text-xl font-medium">Activity Log</h5>
     </div>
-    <button class="rounded-lg bg-[#3752FD] text-white p-3 px-6 mt-5">Clear History</button>
+    <button id="clear-data" class="rounded-lg bg-[#3752FD] text-white p-3 px-6 mt-5">Clear History</button>
     </div>
     <hr class="border-t-2 border-dashed border-blue-200 my-4">
-    <p class="bg-blue-50 m-6 p-4 rounded-lg">You have completed the task <span id="card-title"></span>issue at <span id="time-today"></span></p>
+  <div id="text-container">
+      <p id="hidden-text" class="invisible-text">You have completed the task <span id="card-title"></span>issue at <span id="time-today"></span></p>
+  </div>
   </section>
     </main>
 
@@ -214,6 +228,17 @@
 
       completeButtons.forEach((button) => {
         button.addEventListener("click", function () {
+          alert('Board Updated Successfully')
+
+          
+          const hiddenText = document.getElementById('hidden-text').innerText
+          const textContainer = document.getElementById('text-container')
+          const newText = document.createElement('p')
+          newText.classList.add('invisible-text')
+          newText.innerText = hiddenText
+          textContainer.appendChild(newText)
+          
+
           let count = parseInt(taskCount.innerText);
           let done = parseInt(taskDone.innerText);
 
@@ -228,7 +253,7 @@
 
 
 
-           // Functionality for Current Date
+   // Functionality for Current Date
       function setCurrentDate() {
         let dateElement = document.getElementById("current-date");
         let today = new Date();
@@ -248,13 +273,30 @@
                  }
                 setCurrentDate();
 
+    // for current time
+                function currentTime(){
+                  const time = new Date()
+                  const timeString= time.toLocaleTimeString("en-US", { hour: '2-digit', minute: '2-digit', second: '2-digit'})
+                  document.getElementById("time-today").innerText=timeString
+                }
+                currentTime()
+                setInterval(currentTime, 1000)
 
-                // for color btn
+
+       // for color btn
                  const btn = document.getElementById("colorButton");
 
   btn.addEventListener("click", () => {
     document.body.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 75%)`;
   });
+
+  // for clear history
+      const clearData = document.getElementById('clear-data')
+      .addEventListener('click',function(){
+        const history = document.getElementById('text-container')
+        history.style.display = 'none'
+      })
+
     </script>
   </body>
 </html>
