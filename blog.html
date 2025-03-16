@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment-05</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- font cdn -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: "#da373d",
+            },
+            fontFamily: {
+              poppins: ["Poppins", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="font-poppins bg-blue-50">
+    <nav
+      class="flex justify-between items-center p-4 bg-[#ffffff] mr-24 ml-12 rounded-xl"
+    >
+      <div class="flex justify-center items-center gap-2">
+        <div>
+          <img src="assets/logo.png" alt="DevBoard logo" />
+        </div>
+        <div class="text-4xl flex">
+          <h1 class="font-light">Dev</h1>
+          <span class="font-bold">Board</span>
+        </div>
+      </div>
+      <button
+        id="return-home"
+        class="rounded-lg bg-[#3752FD] text-white p-3 px-6"
+      >
+        Back to Desk
+      </button>
+    </nav>
+    <h1 class="text-center p-5 text-4xl font-bold">Blogs</h1>
+    <div
+      class="justify-between items-center p-4 bg-[#ffffff] mr-24 ml-12 rounded-xl mb-8"
+    >
+      <h2 class="text-xl font-semibold py-2 px-2">
+        Question-1: What are the different ways to select an element in the DOM?
+      </h2>
+      <hr class="border-t-2 border-dashed border-blue-200 my-4" />
+      <p class="text-gray-500 text-lg py-2 px-2">
+        There are multiple ways to select an element in dom. Such as
+        getElementById, getElementsByClassName and querySelector,
+        querySelectorAll etc. With these js methods you can select any element
+        by given their class and Id name.
+      </p>
+    </div>
+    <div
+      class="justify-between items-center p-4 bg-[#ffffff] mr-24 ml-12 rounded-xl mb-8"
+    >
+      <h2 class="text-xl font-semibold py-2 px-2">
+        Question-2: What is the difference between innerHTML, innerText, and
+        textContent ?
+      </h2>
+      <hr class="border-t-2 border-dashed border-blue-200 my-4" />
+      <p class="text-gray-500 text-lg py-2 px-2">
+        These three may look similar but their uses are in different cases.For
+        example innerHTML is only used for writing multiple line in HTML
+        element. InnerText gets or sets the visible text inside an element. For
+        textContent it gets/sets all the text but also can change the hidden
+        content too.
+      </p>
+    </div>
+    <div
+      class="justify-between items-center p-4 bg-[#ffffff] mr-24 ml-12 rounded-xl mb-8"
+    >
+      <h2 class="text-xl font-semibold py-2 px-2">
+        Question-3: What is event delegation in the DOM?
+      </h2>
+      <hr class="border-t-2 border-dashed border-blue-200 my-4" />
+      <p class="text-gray-500 text-lg py-2 px-2">
+        Event delegation is a process in dom where you add one event listener to
+        the parent element instead of adding separate event listener to every
+        child element. With the help of this process, you can manage every child
+        element as needed.
+      </p>
+    </div>
+    <div
+      class="justify-between items-center p-4 bg-[#ffffff] mr-24 ml-12 rounded-xl mb-8"
+    >
+      <h2 class="text-xl font-semibold py-2 px-2">
+        Question-4: What is event bubbling in the DOM?
+      </h2>
+      <hr class="border-t-2 border-dashed border-blue-200 my-4" />
+      <p class="text-gray-500 text-lg py-2 px-2">
+        Event bubbling in dom is used for targeting an element inside the parent
+        element. This event first works in the target element then bubbles up to
+        the parent element. It means when you click on a button the event also
+        happens for the parent element too. You can stop bubbling by
+        stopPropagation() method.
+      </p>
+    </div>
+    <div
+      class="justify-between items-center p-4 bg-[#ffffff] mr-24 ml-12 rounded-2xl mb-8"
+    >
+      <h2 class="text-xl font-semibold py-2 px-2">
+        Question-5: How do you create, add, and remove elements using
+        JavaScript?
+      </h2>
+      <hr class="border-t-2 border-dashed border-blue-200 my-4" />
+      <p class="text-gray-500 text-lg py-2 px-2">
+        You can create element in JavaScript using createElement('tag') method.
+        You just have to write the tag name inside of the method. For adding
+        element you can use appendChild() or append(). You can remove element in
+        JavaScript using remove() or removeChild() method.
+      </p>
+    </div>
+    <script>
+      document
+        .getElementById("return-home")
+        .addEventListener("click", function () {
+          window.location.href = "index.html";
+        });
+    </script>
+  </body>
+</html>
